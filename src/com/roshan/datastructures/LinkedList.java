@@ -1,5 +1,6 @@
-public class Linked_List {
+package com.roshan.datastructures;
 
+public class LinkedList {
     Node head;
     static class Node {
         int val;
@@ -11,7 +12,6 @@ public class Linked_List {
         } //constructor class
 
     }
-
     public void append(int new_val) /* adds to the end of the list */ {
         /* Allocate the Node &
          Put in the data
@@ -67,10 +67,9 @@ public class Linked_List {
             n = n.next;
         }
     }
-
     public static void main(String[] args) {
         /* Start with the empty list. */
-        Linked_List llist = new Linked_List();
+        LinkedList llist = new LinkedList();
 
         llist.head = new Node(1);
         llist.append(2);
