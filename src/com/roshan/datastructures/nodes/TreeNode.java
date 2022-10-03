@@ -4,7 +4,7 @@ public class TreeNode<T> extends NodeBase {
 
     TreeNode<T> _left;
     TreeNode<T> _mid;
-    TreeNode<T> _right
+    TreeNode<T> _right;
 
     TreeNode(T t){
         super(t);

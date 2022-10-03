@@ -1,28 +1,21 @@
 package com.roshan.datastructures;
 
+import com.roshan.datastructures.nodes.ListNode;
+
 public class LinkedList {
-    Node head;
-    static class Node {
-        int val;
-        Node next;
+    ListNode head;
 
-        Node(int initVal){
-            val = initVal;
-            next = null;
-        } //constructor class
-
-    }
     public void append(int new_val) /* adds to the end of the list */ {
         /* Allocate the Node &
          Put in the data
         Set next as null */
-        Node new_node = new Node(new_val);
+        ListNode new_node = new ListNode(new_val);
 
         /* If the Linked List is empty, then make the
         new node as head */
         if (head == null)
         {
-            head = new Node(new_val);
+            head = new ListNode(new_val);
             return;
         }
 
@@ -31,7 +24,7 @@ public class LinkedList {
         new_node.next = null;
 
         /* 5. Else traverse till the last node */
-        Node last = head;
+        ListNode last = head;
         while (last.next != null)
             last = last.next;
 
@@ -41,7 +34,7 @@ public class LinkedList {
     }
     public void push(int new_val) /* adds to rhe front of the list */ {
         /* Allocate the Node & Put in the data*/
-        Node new_node = new Node(new_val);
+        ListNode new_node = new ListNode(new_val);
         /* Make next of new Node as head */
         new_node.next = head;
         /* Move the head to point to new Node */
@@ -54,14 +47,14 @@ public class LinkedList {
             return;
         }
         /* Allocate the Node & Put in the data*/
-        Node new_node = new Node(new_data);
+        ListNode new_node = new ListNode(new_data);
         /* Make next of new Node as next of prev_node */
         new_node.next = prev_node.next;
         /* make next of prev_node as new_node */
         prev_node.next = new_node;
     }
     public void printList() {
-        Node n = head;
+        ListNode n = head;
         while (n != null) {
             System.out.print(n.val + " ");
             n = n.next;
@@ -71,7 +64,7 @@ public class LinkedList {
         /* Start with the empty list. */
         LinkedList llist = new LinkedList();
 
-        llist.head = new Node(1);
+        llist.head = new ListNode(1);
         llist.append(2);
         llist.append(3);
 
