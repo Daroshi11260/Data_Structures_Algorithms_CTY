@@ -1,14 +1,20 @@
-package com.example.roshantaneja.w1d3_lab1;
+package com.cty.roshantaneja.w1d5_lab2;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
-public class DrawingSpace extends Pane{
+/**
+ * An area to allow drawing and use of tools
+ * @author Brian Sea
+ * @version 0.0.1
+ * @since PSet 2
+ */
+public class DrawingSpace extends Pane {
+
     private String name;
     private List<Drawlet> allDrawlets;
     private List<Drawlet> selectedDrawlets;
@@ -19,7 +25,7 @@ public class DrawingSpace extends Pane{
      */
     public DrawingSpace(){
         name = "Untitled";
-        allDrawlets = new ArrayList<>();
+        allDrawlets = new ArrayList();
         selectedDrawlets = new ArrayList<>();
 
         // For now, the line tool is our only tool
@@ -69,12 +75,12 @@ public class DrawingSpace extends Pane{
                 if( e.getEventType() == MouseEvent.MOUSE_RELEASED) {
                     for (Drawlet d : allDrawlets) {
                         if (d.getBoundsInParent().contains(e.getX(), e.getY())) {
-                            d.handleMouseEvent(e);
-                            if( e.isConsumed()){
-                                selectedDrawlets.add(d);
-                                d.select(true);
-                                break;
-                            }
+                           d.handleMouseEvent(e);
+                           if( e.isConsumed()){
+                               selectedDrawlets.add(d);
+                               d.select(true);
+                               break;
+                           }
                         }
                     }
                 }

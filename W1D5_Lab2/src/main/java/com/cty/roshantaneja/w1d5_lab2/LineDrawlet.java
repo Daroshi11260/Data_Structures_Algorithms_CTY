@@ -1,4 +1,4 @@
-package com.example.roshantaneja.w1d3_lab1;
+package com.cty.roshantaneja.w1d5_lab2;
 
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
@@ -8,7 +8,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -49,7 +48,7 @@ public class LineDrawlet extends Drawlet {
         isBuilt = false;
         selectedPoint = -1;
 
-        points = new ArrayList<>();
+        points = new LList<>();
         if( startingPoint != null ) {
             points.add(startingPoint);
         }

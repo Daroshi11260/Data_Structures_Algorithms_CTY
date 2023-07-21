@@ -16,10 +16,8 @@ public class LList<T> implements List<T> {
         public Node<E> next;
         public Node<E> prev;
 
-        Node(Node<E> prev, E element, Node<E> next){
+        Node(E element){
             this.data = element;
-            this.prev = prev;
-            this.next = next;
         }
         Node(){}
     }
@@ -72,39 +70,48 @@ public class LList<T> implements List<T> {
 
     @Override
     public boolean add(T t) {
-        Node<T> newNode = new Node<T>(tail, t, null);
-        insert(size, newNode);
+        Node<T> n = new Node(t);
+        if( head == null ){
+            head = n;
+        }
+        else {
+            tail.next = n;
+        }
+        size ++;
+        tail = n;
         return true;
     }
 
 
     @Override
     public void add(int index, T element) {
-        Node<T> newNode = new Node<T>();
-        newNode.data = element;
-        insert(index, newNode);
-    }
-
-    private void insert(int index, Node<T> node){
-        Node<T> current = head;
+        if (index < 0 || size < index){
+            throw new IndexOutOfBoundsException();
+        }
+        Node<T> node = new Node<T>();
+        node.data = element;
         if (index == 0) {
             head = node;
             if (tail == null){
                 tail = node;
             }
-        } else if (index == size){
-            node.next = tail.next;
-            node.prev = tail;
-            tail = node;
+            size++;
+        } else if (index == size()) {
+            add(node.data);
         } else {
-            for (int i = 0; i < index; i++) {
-                current = current.next;
-            }
-            current.prev.next = node;
-            node.prev = current.prev;
-            node.next = current;
-            current.prev = node;
+            insert(index, node);
         }
+    }
+
+    private void insert(int index, Node<T> node){
+         Node<T> current = head;
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+        node.next = current.next;
+        node.prev = current;
+        current.next = node;
+        node.next.prev = node;
         size++;
     }
 
@@ -124,6 +131,9 @@ public class LList<T> implements List<T> {
 
     @Override
     public T remove(int index) {
+        if (index < 0 || size < index){
+            throw new IndexOutOfBoundsException();
+        }
         Node<T> current = head;
         for(int i = 0; i < index; i++){
             current = current.next;
@@ -146,12 +156,20 @@ public class LList<T> implements List<T> {
                 next.prev = prev;
             }
         }
+
+        if (x == tail){
+            tail = prev;
+        }
         size--;
         return element;
     }
 
     @Override
     public T get(int index) {
+        if (index < 0 || size < index){
+            throw new IndexOutOfBoundsException();
+        }
+
         Node<T> current = head;
         for(int i = 0; i < index; i++){
             current = current.next;
@@ -161,13 +179,7 @@ public class LList<T> implements List<T> {
 
     @Override
     public T set(int index, T element) {
-        Node<T> current = head;
-        for(int i = 0; i < index; i++){
-            current = current.next;
-        }
-        T data = current.data;
-        current.data = element;
-        return data;
+        return null;
     }
 
     @Override
