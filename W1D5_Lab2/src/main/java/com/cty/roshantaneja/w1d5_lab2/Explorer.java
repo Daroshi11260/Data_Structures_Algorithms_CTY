@@ -212,8 +212,8 @@ public class Explorer extends BorderPane {
      * Displays DrawingSpaces
      */
     private class DrawingSpaceListCell extends ListCell<DrawingSpace>{
-        private TextField text;
-        private Insets defaultInsets;
+        private final TextField text;
+        private final Insets defaultInsets;
 
         public DrawingSpaceListCell() {
             defaultInsets = new Insets(5,5,5,5);

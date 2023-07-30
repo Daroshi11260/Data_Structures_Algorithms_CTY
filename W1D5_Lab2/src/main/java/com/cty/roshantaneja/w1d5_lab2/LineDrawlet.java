@@ -19,7 +19,7 @@ import java.util.List;
 public class LineDrawlet extends Drawlet {
     // The points in the line
     // TODO: Refactor this if the line gets more complicated
-    private List<Point2D> points;
+    private final List<Point2D> points;
 
     /**
      * Graphical elements of the line
@@ -29,8 +29,8 @@ public class LineDrawlet extends Drawlet {
      * isBuilt -- whether the line has been constructed
      */
     private static final int POINT_SIZE = 15;
-    private Canvas canvas;
-    private Border selectionBorder;
+    private final Canvas canvas;
+    private final Border selectionBorder;
     private int selectedPoint;
     private boolean isBuilt;
 

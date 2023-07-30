@@ -16,9 +16,9 @@ import java.util.List;
 public class DrawingSpace extends Pane {
 
     private String name;
-    private List<Drawlet> allDrawlets;
-    private List<Drawlet> selectedDrawlets;
-    private Tool activeTool;
+    private final List<Drawlet> allDrawlets;
+    private final List<Drawlet> selectedDrawlets;
+    private final Tool activeTool;
 
     /**
      * Create a blank drawing space
