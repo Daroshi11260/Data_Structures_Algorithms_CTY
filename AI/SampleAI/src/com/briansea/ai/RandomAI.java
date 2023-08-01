@@ -24,11 +24,6 @@ public class RandomAI extends Player {
 		Random r = new Random();
 		int pick = r.nextInt(validMoves.size());
 		for( Move m : validMoves.get(pick)) {
-			try {
-				Thread.sleep(200);
-			} catch (InterruptedException e) {
-				throw new RuntimeException(e);
-			}
 			move.add(m);
 		}
 		
