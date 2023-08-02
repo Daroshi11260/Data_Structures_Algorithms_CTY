@@ -3,54 +3,60 @@ package com.briansea.ai;
 import com.briansea.gamecabinet.game.Game;
 import com.briansea.gamecabinet.game.Move;
 import com.briansea.gamecabinet.game.Player;
+import com.sun.javafx.image.IntPixelGetter;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class RoshanCheckers extends Player {
-
     private MMNode node;
-
     public RoshanCheckers(){
-        this.nameProperty().set("Roshan Checkers");
+        this.nameProperty().set("RoshanCheckers");
     }
-
     @Override
     public void makeMove(Game gamestate, List<Move> move){
         node = new MMNode(gamestate, move, true);
-        node.maximize = true;
         List<List<Move>> validMoves = gamestate.getValidMoves();
-        Random r = new Random();
-        int pick = r.nextInt(validMoves.size());
-        for( Move m : validMoves.get(pick)) {
+        int alpha = Integer.MIN_VALUE;
+        int beta = Integer.MAX_VALUE;
+        alpha = node.alphaBeta(alpha, beta, 5);
+        for (List<Move> m: validMoves){
             move.add(m);
         }
 
-        node.alphaBeta(Integer.MAX_VALUE, Integer.MIN_VALUE, 3);
 
+
+//        Random r = new Random();
+//        int pick = r.nextInt(validMoves.size());
+//        for( Move m : validMoves.get(pick)) {
+//            move.add(m);
+//        }
     }
-
     private class MMNode{
         private static int INFINITY = Integer.MAX_VALUE;
         private boolean maximize;
         private Game state;
         private List<Move> move;
         private ArrayList<MMNode> children;
-        int value;
+        private int value;
+        Random rand;
         public MMNode(Game state, List<Move> move, boolean maximize){
             this.state = state;
             this.children = new ArrayList<MMNode>();
             this.move = move;
+            this.rand = new Random();
+
         }
 
         private int score() {
-            Random rand = new Random();
-            return rand.nextInt(100);
+            return rand.nextInt(100) * state.getScore(state.getPlayer(state.whoseTurn()));
+
         }
 
         public int alphaBeta(int alpha, int beta, int depth){
             if (depth == 0){
+                value = score();
                 return value;
             }
             depth--;
